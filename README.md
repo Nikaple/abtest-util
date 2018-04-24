@@ -4,6 +4,7 @@
 [![Codecov](https://img.shields.io/codecov/c/github/nikaple/abtest-util.svg)](https://codecov.io/gh/Nikaple/abtest-util)
 [![version](https://img.shields.io/npm/v/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
 [![license](https://img.shields.io/npm/l/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
+
 A simple and extensible utility library for abtest
 
 ## Usage
