@@ -1,5 +1,9 @@
 # abtest-util
 
+[![CircleCI](https://circleci.com/gh/Nikaple/abtest-util.svg?style=shield)](https://circleci.com/gh/Nikaple/abtest-util)
+[![Codecov](https://img.shields.io/codecov/c/github/nikaple/abtest-util.svg)](https://codecov.io/gh/Nikaple/abtest-util)
+[![version](https://img.shields.io/npm/v/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
+[![license](https://img.shields.io/npm/l/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
 A simple and extensible utility library for abtest
 
 ## Usage
@@ -13,7 +17,7 @@ const test = new ABTest({
     // current user
     user: "7ae4d9c516",
     // method to classify user into groups
-    classify(user) { 
+    classify(user) {
       	return parseInt(user, 16) % 2 === 0
         	? this.groups.A
         	: this.groups.B
@@ -41,18 +45,18 @@ module.exports = test
 When you want to run the test:
 
 ```javascript
-const test = require('./abtest')
+const test = require("./abtest");
 // if user is in group A:
-const resultA = test.run()
+const resultA = test.run();
 // if user is in group B:
-const resultB = test.run('foo')
+const resultB = test.run("foo");
 // NOTE: user can't be group A and group B!
 // so one of (resultA, resultB) will throw an Error!
 ```
 
 ## API
 
-__new ABTest(config)__
+**new ABTest(config)**
 
 | config               | description                                    | type                                              |
 | -------------------- | ---------------------------------------------- | ------------------------------------------------- |
@@ -64,46 +68,44 @@ __new ABTest(config)__
 
 ```javascript
 const test = new ABTest({
-    user: "7ae4d9c516",
-    classify(user) {
-      	return parseInt(user, 16) % 2 === 0
-        	? this.groups.A
-        	: this.groups.B
-    },
-    handlers: {
-        A: () => 'Running default function of group A',
-        B: {
-            foo: () => 'Running foo of group B',
-            bar: () => 'Running bar of group B'
-        },
+  user: "7ae4d9c516",
+  classify(user) {
+    return parseInt(user, 16) % 2 === 0 ? this.groups.A : this.groups.B;
+  },
+  handlers: {
+    A: () => "Running default function of group A",
+    B: {
+      foo: () => "Running foo of group B",
+      bar: () => "Running bar of group B"
     }
-})
+  }
+});
 ```
 
-__ABTest.prototype.setUser(user)__
+**ABTest.prototype.setUser(user)**
 
 Set current user.
 
-__ABTest.prototype.getUser()__
+**ABTest.prototype.getUser()**
 
 Get current user.
 
 ```javascript
-test.setUser('7ae4d9c517')
-test.getUser() // 7ae4d9c517
+test.setUser("7ae4d9c517");
+test.getUser(); // 7ae4d9c517
 ```
 
-__ABTest.prototype.getGroupId()__
+**ABTest.prototype.getGroupId()**
 
 Get current group id.
 
 ```javascript
-test.getGroupId() // B
-test.setUser('7ae4d9c517')
-test.getGroupId() // A
+test.getGroupId(); // B
+test.setUser("7ae4d9c517");
+test.getGroupId(); // A
 ```
 
-__ABTest.prototype.addHandler(name, handler[, groupId])__
+**ABTest.prototype.addHandler(name, handler[, groupId])**
 
 Adds the `handler` of `name` on group `groupId`(default: current groupId).
 
@@ -116,11 +118,11 @@ test.getGroupId() // A
 test.addHandler('foo', () => )
 ```
 
-__ABTest.prototype.run__
+**ABTest.prototype.run**
 
 ```javascript
-test.run() // Error: Name is required for object type handlers.
-test.run() // 'Running default function of group A'
-test.run('foo') // 'Running foo of group B'
-test.run('bar') // 'Running bar of group B'
+test.run(); // Error: Name is required for object type handlers.
+test.run(); // 'Running default function of group A'
+test.run("foo"); // 'Running foo of group B'
+test.run("bar"); // 'Running bar of group B'
 ```
