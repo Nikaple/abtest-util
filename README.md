@@ -51,13 +51,13 @@ const test = require("./abtest");
 const resultA = test.run();
 // if user is in group B:
 const resultB = test.run("foo");
-// NOTE: user can't be group A and group B!
+// NOTE: user can't be both group A and group B!
 // so one of (resultA, resultB) will throw an Error!
 ```
 
 ## API
 
-**new ABTest(config)**
+**new ABTest(config)**: create a new ABTest.
 
 | config               | description                                    | type                                              |
 | -------------------- | ---------------------------------------------- | ------------------------------------------------- |
@@ -116,14 +116,21 @@ test.addHandler('baz', () => 'Running baz of group B')
 test.run('baz') // Running foo of group B
 test.setUser('7ae4d9c517')
 test.getGroupId() // A
-test.addHandler('foo', () => )
+test.addHandler('foo', () => 'Running foo of group A')
+test.run('foo') // Running foo of group
+test.run() // Running default function of group A
 ```
 
-**ABTest.prototype.run**
+**ABTest.prototype.run([name])**
+
+Run `name` function in handler groups. When no name was provided, test will try to run default handler.
 
 ```javascript
-test.run(); // Error: Name is required for object type handlers.
-test.run(); // 'Running default function of group A'
-test.run("foo"); // 'Running foo of group B'
-test.run("bar"); // 'Running bar of group B'
+// if user is in group A:
+const resultA = test.run(); // Running default function of group A
+// if user is in group B:
+const resultB = test.run("foo"); // Running foo of group B
+// NOTE: user can't be both group A and group B!
+// so one of (resultA, resultB) will throw an Error!
 ```
+
