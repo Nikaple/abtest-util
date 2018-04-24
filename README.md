@@ -1,8 +1,8 @@
 # abtest-util
 
 [![CircleCI](https://circleci.com/gh/Nikaple/abtest-util.svg?style=shield)](https://circleci.com/gh/Nikaple/abtest-util)
-[![Codecov](https://img.shields.io/codecov/c/github/nikaple/abtest-util.svg)](https://codecov.io/gh/Nikaple/abtest-util)
-[![version](https://img.shields.io/npm/v/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
+[![codecov](https://codecov.io/gh/Nikaple/abtest-util/branch/master/graph/badge.svg)](https://codecov.io/gh/Nikaple/abtest-util)
+[![version](https://badge.fury.io/js/abtest-util.svg)](https://badge.fury.io/js/abtest-util)
 [![license](https://img.shields.io/npm/l/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
 
 A simple and extensible utility library for abtest
@@ -111,14 +111,14 @@ test.getGroupId(); // A
 Adds the `handler` of `name` on group `groupId`(default: current groupId).
 
 ```javascript
-test.getGroupId() // B
-test.addHandler('baz', () => 'Running baz of group B')
-test.run('baz') // Running foo of group B
-test.setUser('7ae4d9c517')
-test.getGroupId() // A
-test.addHandler('foo', () => 'Running foo of group A')
-test.run('foo') // Running foo of group
-test.run() // Running default function of group A
+test.getGroupId(); // B
+test.addHandler("baz", () => "Running baz of group B");
+test.run("baz"); // Running foo of group B
+test.setUser("7ae4d9c517");
+test.getGroupId(); // A
+test.addHandler("foo", () => "Running foo of group A");
+test.run("foo"); // Running foo of group
+test.run(); // Running default function of group A
 ```
 
 **ABTest.prototype.run([name])**
@@ -133,4 +133,3 @@ const resultB = test.run("foo"); // Running foo of group B
 // NOTE: user can't be both group A and group B!
 // so one of (resultA, resultB) will throw an Error!
 ```
-
