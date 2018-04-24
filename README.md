@@ -4,6 +4,52 @@ A simple and extensible utility library for abtest
 
 ## Usage
 
+First, create your test with `new ABTest(config)`:
+
+```javascript
+const appId = require('./some.state')
+const appIdToRunABTest = '1731035743'
+const test = new ABTest({
+    // current user
+    user: "7ae4d9c516",
+    // method to classify user into groups
+    classify(user) { 
+      	return parseInt(user, 16) % 2 === 0
+        	? this.groups.A
+        	: this.groups.B
+    },
+    // assign handler(s) to each group
+    handlers: {
+        A: () => 'Running default function of group A',
+        B: {
+            foo: () => 'Running foo of group B',
+            bar: ABTest.noop, // do nothing
+        },
+    }
+    // optional: if you need 3 or more groups, assign them to
+    // `groups`, and they can be accessed as this.groups.C
+    groups: ['A', 'B', 'C'],
+    // optional: conditionally run the test
+    shouldRunTest(user) {
+    	return appId === appIdToRunABTest
+	}
+})
+
+module.exports = test
+```
+
+When you want to run the test:
+
+```javascript
+const test = require('./abtest')
+// if user is in group A:
+const resultA = test.run()
+// if user is in group B:
+const resultB = test.run('foo')
+// NOTE: user can't be group A and group B!
+// so one of (resultA, resultB) will throw an Error!
+```
+
 ## API
 
 __new ABTest(config)__
