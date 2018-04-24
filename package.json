@@ -1,6 +1,6 @@
 {
   "name": "abtest-util",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A tiny ABTest utility library",
   "repository": "https://github.com/Nikaple/abtest-util",
   "keywords": [
