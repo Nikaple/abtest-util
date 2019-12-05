@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/Nikaple/abtest-util.svg?style=shield)](https://circleci.com/gh/Nikaple/abtest-util)
 [![codecov](https://codecov.io/gh/Nikaple/abtest-util/branch/master/graph/badge.svg)](https://codecov.io/gh/Nikaple/abtest-util)
 [![version](https://badge.fury.io/js/abtest-util.svg)](https://badge.fury.io/js/abtest-util)
-[![license](https://img.shields.io/npm/l/abtest-util.svg)](https://www.npmjs.com/package/abtest-util)
+[![license](https://img.shields.io/npm/l/abtest-util.svg)](https://www.npmjs.com/package/abtest-util) [![Greenkeeper badge](https://badges.greenkeeper.io/Nikaple/abtest-util.svg)](https://greenkeeper.io/)
 
 A simple and extensible utility library for abtest
 
